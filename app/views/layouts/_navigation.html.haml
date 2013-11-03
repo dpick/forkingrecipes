@@ -1,0 +1,24 @@
+= link_to "Forking Recipes", root_path, :class => 'brand'
+%ul.nav.pull-right
+  - if user_signed_in?
+    %li
+      = link_to('Edit account', edit_user_registration_path)
+  - else
+    %li
+      = link_to('Sign up', new_user_registration_path)
+  - if user_signed_in?
+    %li
+      = link_to('Logout', destroy_user_session_path, :method=>'delete')
+  - else
+    %li
+      = link_to('Login', new_user_session_path)
+%ul.nav.pull-left
+  %li
+    = link_to("Browse", "/browse")
+  - if user_signed_in?
+    %li
+      = link_to("Your Recipes", user_path(current_user))
+  %li
+    = form_tag('/search', :method => 'POST', :class => 'navbar-form') do
+      = text_field_tag('query', nil, :placeholder => 'Search')
+      = button_tag('Search', :class => 'btn')

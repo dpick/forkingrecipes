@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title= @page_title || "ForkingRecipes"
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = yield(:head)
+  %body{"data-controller" => controller_name, "data-action" => action_name}
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          = render 'layouts/navigation'
+    #main{:role => "main"}
+      .container-fluid
+        .row-fluid
+          .span9
+            %div{:id => "main-container", :class => "hero-unit"}
+              = render 'layouts/messages'
+              = yield
+          .span3
+            .well.sidebar-nav
+              %ul.nav.nav-list
+                %li= link_to 'Create a new recipe', new_recipe_path
+                - if current_user
+                  %li.nav-header Your Recipes
+                  - @recipes.each do |recipe|
+                    %li
+                      %a{:href => recipe_path(recipe)}= recipe.title
+                - else
+                  %li.nav-header Featured Users
+                  - @users.each do |user|
+                    %li
+                      %a{:href => user_path(user)}= user.username
+
+
+        %footer
+          %a{:href => "mailto:forkingrecipes@gmail.com"}
+            Contact Us
+
+    - if Rails.env == "production"
+      = javascript_include_tag "http://s.skimresources.com/js/45452X1165346.skimlinks.js"
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37615923-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();

@@ -1,0 +1,67 @@
+//= require_self
+//= require guiders
+//= require_tree .
+
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+
+.hero-unit {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #eee;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.recipe-list {
+  vertical-align: top;
+}
+
+.recipe-header {
+  text-align: left;
+}
+
+.item {
+  max-width: 200px;
+  border:1px solid black;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+}
+
+.recipe img {
+  max-width: 610px;
+}
+
+.item-text {
+  text-align: center;
+  color: black;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: medium;
+}
+
+#recent_recipes {
+  width: 50%;
+  display: inline-block;
+}
+
+#recent_users {
+  display: inline-block;
+  width: 30%;
+  float:right;
+}
+
+#new-recipe {
+  display: inline;
+}
+
+footer {
+  padding-left: 5px;
+}

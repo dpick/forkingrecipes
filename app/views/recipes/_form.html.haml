@@ -1,0 +1,22 @@
+= form_for @recipe, :as => :recipe_form, :url => recipe_path(@recipe) do |f|
+  - if @recipe.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@recipe.errors.count, "error")} prohibited this recipe from being saved:"
+      %ul
+        - @recipe.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title, :class => "input-xxlarge"
+  .field
+    = f.label :body
+    = f.text_area :body, :class => "input-xxlarge"
+  .field
+    = f.label :commit_message, "Update Message"
+    = f.text_field :commit_message, :value => "", :class => "input-xxlarge"
+  .field
+    = f.label :tag_list, "Tags (seperated by commas)"
+    = f.text_field :tag_list, :class => "input-xxlarge"
+  .actions
+    = f.submit 'Save', :class => "btn"

@@ -1,0 +1,6 @@
+- @images.each do |image, recipe|
+  %a{:href => recipe_path(recipe)}
+    %div.item
+      %img{:src => image}
+      .item-text
+        = recipe.title

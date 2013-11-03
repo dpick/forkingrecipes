@@ -1,0 +1,32 @@
+- if current_user && !current_user.following?(@user) && current_user != @user
+  = link_to "Follow #{@user.username}", user_follow_path(@user), :class => "btn", :method => :post
+- elsif current_user && current_user != @user
+  = link_to "Unfollow #{@user.username}", user_unfollow_path(@user), :class => "btn", :method => :post
+
+- if !@recipes.empty?
+  %div{:class => "recipes"}
+    %table
+      %tr
+        %th.span5.recipe-header
+          - if current_user == @user
+            %h3 Your Recipes
+          - else
+            %h3= "#{@user.username}'s Recipes"
+        %th.span5.recipe-header
+          - if current_user == @user
+            %h3 Your Favorited Recipes
+      %tr
+        %td.span5.recipe-list
+          %ul
+            - @recipes.each do |recipe|
+              %li= link_to recipe.title, "/#{@user.username}/#{recipe.slug}"
+        %td.span5.recipe-list
+          - if current_user == @user
+            %ul
+              - @favorited_recipes.each do |recipe|
+                %li= link_to recipe.title, "/#{recipe.user.username}/#{recipe.slug}"
+
+
+%br
+%br
+= link_to "New Recipe", new_recipe_path
